@@ -11,7 +11,7 @@
 
     <!--https://developer.android.google.cn/guide/topics/manifest/activity-element#config-->
             <!--android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"-->
-        <activity android:name=".MainActivity"
+        <activity android:name=".lifecycle.MainActivity"
             android:noHistory="true"
             android:persistableMode="persistAcrossReboots">
             <intent-filter>
@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity"/>
-        <activity android:name=".ThirdActivity" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity android:name=".lifecycle.SecondActivity"/>
+        <activity android:name=".lifecycle.ThirdActivity" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
 
     </application>
 

@@ -1,10 +1,12 @@
-package com.stone.activitylifecycle;
+package com.stone.activitylifecycle.lifecycle;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.stone.activitylifecycle.R;
 
 /**
  * desc     :
@@ -13,9 +15,9 @@ import android.util.Log;
  * email    : aa86799@163.com
  * time     : 2018/6/13 13 42
  */
-public class ThirdActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
-    private static final String TAG = "stone->ThirdActivity";
+    private static final String TAG = "stone->SecondActivity";
 
     /**
      * Activity正在被创建，可以做些初始化工作，如设置布局，加载数据等
@@ -25,7 +27,7 @@ public class ThirdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        setContentView(R.layout.activity_main);
 
         Log.i(TAG, "onCreate1");
     }
@@ -70,5 +72,29 @@ public class ThirdActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState1");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        Log.i(TAG, "onSaveInstanceState2");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState1");
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        Log.i(TAG, "onRestoreInstanceState2");
     }
 }
