@@ -9,19 +9,46 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-    <!--https://developer.android.google.cn/guide/topics/manifest/activity-element#config-->
-            <!--android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"-->
-        <activity android:name=".lifecycle.MainActivity"
+        <!-- activity life cycle begin -->
+        <!--https://developer.android.google.cn/guide/topics/manifest/activity-element#config-->
+        <!--android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"-->
+        <activity
+            android:name=".lifecycle.MainActivity"
             android:noHistory="true"
             android:persistableMode="persistAcrossReboots">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".lifecycle.SecondActivity"/>
+        <activity
+            android:name=".lifecycle.ThirdActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <!-- life cycle end -->
+
+        <!-- activity launch mode begin -->
+        <activity android:name=".launchmode.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".lifecycle.SecondActivity"/>
-        <activity android:name=".lifecycle.ThirdActivity" android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity
+            android:name=".launchmode.SecondActivity"
+            android:launchMode="singleTop"/>
+        <activity
+            android:name=".launchmode.ThirdActivity"
+            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".launchmode.FourthActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="task.make"/>
+        <activity
+            android:name=".launchmode.FifthActivity"
+            android:allowTaskReparenting="true"
+            android:taskAffinity="task.make"/>
+        <!-- activity launch mode end -->
 
     </application>
 
