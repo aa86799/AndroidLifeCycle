@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "taskId=" + getTaskId());
 
-//        Intent intent = new Intent();
-//        intent.setClass(this, SecondActivity.class);
-//        startActivityForResult(intent, 1000);
+        Intent intent = new Intent();
+        intent.setClass(this, SecondActivity.class);
+        startActivityForResult(intent, 1000);
 
         //测试 moveTaskToBack()
 //        new Handler().postDelayed(new Runnable() {
