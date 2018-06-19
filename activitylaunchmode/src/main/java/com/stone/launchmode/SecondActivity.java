@@ -1,4 +1,4 @@
-package com.stone.activitylifecycle.launchmode;
+package com.stone.launchmode;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import android.util.Log;
  * email    : aa86799@163.com
  * time     : 2018/6/13 17 43
  */
-public class ThirdActivity extends AppCompatActivity {
-    private static final String TAG = "stone->ThirdActivity";
+public class SecondActivity extends AppCompatActivity {
+    private static final String TAG = "stone->SecondActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,10 +27,23 @@ public class ThirdActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-                intent.putExtra("value", 8888);
-                setResult(1001, intent);
+                intent.setClass(SecondActivity.this, ThirdActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+                startActivity(intent);
                 finish();
             }
         }, 2000);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "" + requestCode + ",," + resultCode);
+        if (resultCode == 1001) {
+            if (requestCode == 1000) {
+                Log.i(TAG, "receive msg");
+            }
+        }
     }
 }

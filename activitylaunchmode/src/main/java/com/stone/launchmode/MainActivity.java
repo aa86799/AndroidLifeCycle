@@ -1,7 +1,8 @@
-package com.stone.activitylifecycle.launchmode;
+package com.stone.launchmode;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -75,8 +76,16 @@ public class MainActivity extends AppCompatActivity {
      *      - FLAG_ACTIVITY_TASK_ON_HOME
      *      - FLAG_ACTIVITY_RETAIN_IN_RECENTS
      *      - FLAG_ACTIVITY_LAUNCH_ADJACENT
-     *
      *      还有些标志，是被系统使用的，不要人为使用。
+     *
+     *   task 相关的实用函数:
+     *      boolean isTaskRoot()
+     *          判断该Activity是否为任务栈中的根Activity，即启动应用的第一个Activity
+     *      boolean moveTaskToBack (boolean nonRoot)
+     *          用于将activity退到后台，不是finish
+     *          从生命周期来说，会执行onPause、onStop，但不会执行onDestroy
+     *          恢复的时候也一样，会执行onStart、onResume，但不会执行onCreate
+     *          参数nonRoot表示的含义是此方法对非根activity是否有效
      */
 
     @Override
@@ -85,9 +94,16 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "taskId=" + getTaskId());
 
-        Intent intent = new Intent();
-        intent.setClass(this, SecondActivity.class);
-        startActivityForResult(intent, 1000);
+//        Intent intent = new Intent();
+//        intent.setClass(this, SecondActivity.class);
+//        startActivityForResult(intent, 1000);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                moveTaskToBack(true);
+            }
+        }, 2000);
     }
 
     @Override
@@ -99,5 +115,41 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "receive msg");
             }
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
     }
 }
