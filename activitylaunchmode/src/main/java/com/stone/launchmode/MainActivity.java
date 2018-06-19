@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
      *      boolean moveTaskToBack (boolean nonRoot)
      *          用于将activity退到后台，不是finish
      *          从生命周期来说，会执行onPause、onStop，但不会执行onDestroy
-     *          恢复的时候也一样，会执行onStart、onResume，但不会执行onCreate
+     *          恢复的时候也一样，会执行onRestart、onStart、onResume，但不会执行onCreate
      *          参数nonRoot表示的含义是此方法对非根activity是否有效
      */
 
@@ -98,12 +98,13 @@ public class MainActivity extends AppCompatActivity {
 //        intent.setClass(this, SecondActivity.class);
 //        startActivityForResult(intent, 1000);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                moveTaskToBack(true);
-            }
-        }, 2000);
+        //测试 moveTaskToBack()
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                moveTaskToBack(true);
+//            }
+//        }, 2000);
     }
 
     @Override
