@@ -1,1 +1,1 @@
-include ':activitylaunchmode', ':activitylifecycle'
+include ':activitylaunchmode', ':activitylifecycle', ':ipc'
