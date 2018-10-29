@@ -8,13 +8,14 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
 
 import com.stone.ipc.binder.Book;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import androidx.annotation.Nullable;
 
 /**
  * desc     : 示例了在 Service 中使用 IBinder，也属于 AIDL。 当前 service 在一个新进程

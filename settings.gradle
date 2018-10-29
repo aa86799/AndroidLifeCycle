@@ -1,1 +1,1 @@
-include ':activitylaunchmode', ':activitylifecycle', ':ipc'
+include ':activitylaunchmode', ':activitylifecycle', ':ipc', ':viewart', ':androidtest'
