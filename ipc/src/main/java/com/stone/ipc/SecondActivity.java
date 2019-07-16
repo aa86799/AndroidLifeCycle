@@ -13,10 +13,9 @@ import android.os.RemoteException;
 
 import com.stone.ipc.binder.Book;
 
-import java.util.Arrays;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 /**
  * desc     :
