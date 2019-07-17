@@ -2,9 +2,11 @@
     创建用于通信的 interface aidl， 如 IBookManager.aidl
     编译生成 接口对应的 Binder 文件， 如 IBookManager.java
     其继承了android.os.IInterface
-    内部静态抽象类：public static abstract class Stub extends android.os.Binder implements com.stone.ipc.IBookManager
+    内部静态抽象类：
+        public static abstract class Stub extends android.os.Binder implements com.stone.ipc.IBookManager
         asInterface(android.os.IBinder obj)
-            用于将服务端的 Binder对象转成客户端需要的 AIDL的接口对象，如果在两端在同一进程，则返回服务端的 Stub，否则返回 Stub.proxy
+            用于将服务端的 Binder对象转成客户端需要的 AIDL的接口对象，
+            如果在两端在同一进程，则返回服务端的 Stub，否则返回 Stub.proxy
         asBinder() 返回 Binder 对象
         onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags)
             该方法运行在服务端的线程池中，当客户端发起 ipc 请求时，远程请求会通过系统底层封装后交由此方法来处理。
@@ -22,8 +24,11 @@
     可以仿照并自实现 IBookManager.java，而不声明相应的 .aidl 文件
 
 
-    Binder的两个重要方法linkToDeath、unlinkToDeath，见BookService
-        即 使用AIDL 来进行 服务端 和 客户端通信
+    Binder的两个重要方法 linkToDeath、unlinkToDeath，
+        linkToDeath(IBinder.DeathRecipient deth); 
+            DeathRecipient 是一个接口，只有一个方法 binderDied();
+        当 binder 实例消亡时，就会触发 DeathRecipient#binderDied();
+            
     相关线程
         客户端调用远程服务的方法，该被调用方法是运行在服务端的 Binder 线程池中的，同时客户端线程被挂起；反之亦然；
         若服务端方法较耗时，将造成客户端 UI 线程被长期阻塞；
@@ -35,4 +40,11 @@
       * 该 Message 还可以指定另一个 Messenger 来处理服务端回传的消息
       * 与服务端一样，处理消息的 Messenger 采用 结合 Handler 进行构造，以便处理
 
-
+    
+    public interface IInterface {
+        IBinder asBinder();
+    }
+    com.android.server.am.ActivityManagerService extends IActivityManager.Stub implements Watchdog.Monitor, BatteryStatsImpl.BatteryCallback 
+    {@hide} 
+    public interface IActivityManager extends IInterface
+    

@@ -79,7 +79,9 @@ public class BookService extends Service {
                         e.printStackTrace();
                     }
                     System.out.println("stone-> handleMsg-thread: " + Thread.currentThread().getName());
-                    mHandler.sendEmptyMessageDelayed(0, 1000);
+                    if (mAtomicInteger.get() < 3) {
+                        mHandler.sendEmptyMessageDelayed(0, 1000);
+                    }
                     break;
             }
         }

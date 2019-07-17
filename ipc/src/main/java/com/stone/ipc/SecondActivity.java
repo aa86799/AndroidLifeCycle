@@ -31,6 +31,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private Messenger mMessenger; //发送
     private Messenger mReplyMessenger = new Messenger(new MessengerHandler()); //接收
+
     private static class MessengerHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -204,6 +205,8 @@ public class SecondActivity extends AppCompatActivity {
                  *      RemoteCallbackList 内部维护了一个  ArrayMap<IBinder, Callback> mCallbacks;
                  *   因为IBinder对象在多进程中是同一个，所以 可以定位到 map 中的 value
                  *      map 中 key 的 IBinder 是通过 mListener.asBinder()获取的
+                 *
+                 * 详见 BookService 中的 RemoteCallbackList 对象的相关代码
                  */
             } catch (RemoteException e) {
                 e.printStackTrace();
