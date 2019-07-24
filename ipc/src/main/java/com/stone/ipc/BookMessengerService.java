@@ -30,10 +30,10 @@ public class BookMessengerService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_FROM_CLIENT:
-                    System.out.println("stone-> receive msg from client:" + msg.getData().getString("msg"));
+                    System.out.println("stone-> receive msg from client:" + msg.getData().getString("msg") + ", " + android.os.Process.myPid());
                     Message replyMsg = Message.obtain(null, MSG_FROM_SERVER);
                     Bundle bundle = new Bundle();
-                    bundle.putString("reply", "yeah, i received your msg. please wait a moment");
+                    bundle.putString("reply", "yeah, i received your msg. please wait a moment." + android.os.Process.myPid());
                     replyMsg.setData(bundle);
                     try {
                         msg.replyTo.send(replyMsg);

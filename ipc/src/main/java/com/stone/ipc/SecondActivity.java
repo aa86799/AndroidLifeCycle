@@ -37,7 +37,7 @@ public class SecondActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case BookMessengerService.MSG_FROM_SERVER:
-                    System.out.println("stone-> receive msg from server:" + msg.getData().getString("reply"));
+                    System.out.println("stone-> receive msg from server:" + msg.getData().getString("reply") + ", " + android.os.Process.myPid() );
                     break;
                 default:
                     super.handleMessage(msg);
@@ -98,7 +98,7 @@ public class SecondActivity extends AppCompatActivity {
 
         testBookService();
 
-//        testBookMessengerService();
+        testBookMessengerService();
     }
 
     private void testBookService() {
@@ -151,7 +151,7 @@ public class SecondActivity extends AppCompatActivity {
                 mMessenger = new Messenger(service);
                 Message msg = Message.obtain(null, BookMessengerService.MSG_FROM_CLIENT);
                 Bundle data = new Bundle();
-                data.putString("msg", "hello, this is client.");
+                data.putString("msg", "hello, this is client." + android.os.Process.myPid());
                 msg.setData(data);
                 msg.replyTo = mReplyMessenger;
                 /*
